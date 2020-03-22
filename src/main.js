@@ -2,8 +2,12 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
+import VueJsonp from 'vue-jsonp'
+
 
 Vue.use(VueRouter)
+Vue.use(VueJsonp)
+Vue.use(VueJsonp, 5000)
 
 // импортируем Hello компонент
 import Main from './pages/Main'

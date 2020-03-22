@@ -6,7 +6,7 @@
           Прежде чем начать работу с приложением, необходимо авторизироваться через ВКонтакте
         </div>
         <a class="oauth_link"
-          href="https://oauth.vk.com/authorize?client_id=7363768&display=page&redirect_uri=https://vkfriendsangular.000webhostapp.com&scope=friends,offline&response_type=token&v=5.52">
+          href="https://oauth.vk.com/authorize?client_id=7369749&redirect_uri=http://localhost:8080&display=page&&scope=friends,offline&response_type=token&v=5.52">
           Войти с VK
         </a>
       </div>

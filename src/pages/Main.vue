@@ -3,6 +3,7 @@
     <div class="page_title">
       ВОвконтакте
     </div>
+    <AppCurrentUser></AppCurrentUser>
     <div class="friend_list_wrapper">
       <div class="friends_list_title">
         Мои друзья
@@ -12,18 +13,35 @@
   </div>
 </template>
 
+
 <script>
 import AppFriendList from './../components/Friend-list'
+import AppCurrentUser from './../components/Current-user'
 
 export default {
   name: 'Main',
   components: {
-    AppFriendList
+    AppFriendList,
+    AppCurrentUser
+  },
+  beforeCreate(){
+    let reg = new RegExp("access_token=(.*)&expires_in", "g");
+    let urlMatch = reg.exec(this.$route.fullPath);
+    if( urlMatch ){
+      let urlToken = urlMatch[1];
+      localStorage.setItem("access_token", urlToken);
+      this.$router.push("main");
+    }
+
+    if( !localStorage.getItem("access_token") ){
+      console.log("no token");
+      this.$router.push("authorization");
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
   .page_title{
     text-align: center;
