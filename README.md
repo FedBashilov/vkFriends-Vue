@@ -1,5 +1,5 @@
 # vk-friends-vue
-
+VK api + Vue.js
 ## Project setup
 ```
 npm install
