@@ -14,13 +14,19 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: 'Authorization',
+  beforeCreate(){
+    if( localStorage.getItem("access_token") ){
+      this.$router.push("main");
+    }
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
   .wrapper{
     display: flex;
@@ -32,7 +38,6 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-
   }
 
   .window{
@@ -54,7 +59,7 @@ export default {
     background: #4a76a8;
     box-shadow: 0 0 10px #4a76a8;
 
-    -webkit-transition-duration: 0.2s; /* Safari */
+    -webkit-transition-duration: 0.2s;
     -moz-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s;

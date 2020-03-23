@@ -23,18 +23,16 @@ export default {
   name: 'Friend-list',
   data: () => {
     return {
-      friends: [
-        {first_name: "fff",
-        last_name: "qwe"}
-      ],
-      token: "8c150feda568208b7377249d3508dd0e8b978d64d5c89bd77424bafd3d5e576b57237de6d75d5079c74db"
+      friends: [],
+      token: localStorage.getItem("access_token")
     }
   },
   mounted() {
-      this.$jsonp(`https://api.vk.com/method/friends.search?count=5&fields=photo_100&access_token=${this.token}&v=5.52`,).then(json => {
+      this.$jsonp(`https://api.vk.com/method/friends.search?count=5&fields=photo_100&access_token=${this.token}&v=5.52`).then(json => {
         // Success.
-        this.friends = json.response.items;
-        console.log(this.friends);
+        if( json.response ){
+          this.friends = json.response.items;
+        }
       }).catch(err => {
         // Failed.
         console.log(err);
@@ -43,7 +41,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
   .wrapper{
     padding: 20px;

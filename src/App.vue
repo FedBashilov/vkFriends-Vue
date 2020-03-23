@@ -1,7 +1,6 @@
 <template>
   <div class="app">
-  <!-- здесь будут отображаться наши компоненты -->
-  <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,7 +9,7 @@ export default {
   name: 'app',
 }
 </script>
-<!-- стили компонента -->
-<style scoped>
 
+
+<style scoped>
 </style>

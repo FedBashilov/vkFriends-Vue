@@ -1,7 +1,12 @@
 <template>
   <div class="main">
-    <div class="page_title">
-      ВОвконтакте
+    <div class="header">
+      <div class="page_title">
+        ВОвконтакте
+      </div>
+      <div class="logout" @click="logout()">
+        Выйти
+      </div>
     </div>
     <AppCurrentUser></AppCurrentUser>
     <div class="friend_list_wrapper">
@@ -24,9 +29,16 @@ export default {
     AppFriendList,
     AppCurrentUser
   },
+  methods: {
+    logout(){
+      localStorage.removeItem("access_token");
+      this.$router.push("authorization");
+    }
+  },
   beforeCreate(){
     let reg = new RegExp("access_token=(.*)&expires_in", "g");
     let urlMatch = reg.exec(this.$route.fullPath);
+    
     if( urlMatch ){
       let urlToken = urlMatch[1];
       localStorage.setItem("access_token", urlToken);
@@ -34,7 +46,6 @@ export default {
     }
 
     if( !localStorage.getItem("access_token") ){
-      console.log("no token");
       this.$router.push("authorization");
     }
   }
@@ -43,12 +54,25 @@ export default {
 
 
 <style scoped>
-  .page_title{
-    text-align: center;
+  .header{
+    position: relative;
     background: #4a76a8;
     color: #fff;
     padding: 8px 0;
+  }
+
+  .page_title{
+    text-align: center;
     font-size: 1.3em;
+  }
+
+  .logout{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 10px;
   }
 
   .friends_list_title{
